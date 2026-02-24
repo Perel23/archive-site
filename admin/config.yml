@@ -1,0 +1,46 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "media"
+public_folder: "/media"
+
+collections:
+  - name: "tracks"
+    label: "Tracks"
+    label_singular: "Track"
+    folder: "."
+    format: "json"
+    create: false
+    files:
+      - name: "tracks"
+        label: "All Tracks"
+        file: "tracks.json"
+        description: "The full list of tracks in the archive"
+        fields:
+          - label: "Tracks"
+            name: "tracks"
+            widget: "list"
+            collapsed: false
+            summary: "{{fields.title}} — {{fields.year}}"
+            fields:
+              - { label: "ID", name: "id", widget: "number" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Italic Word in Title", name: "titleItalic", widget: "string", hint: "Which word should be italicised in gold?" }
+              - { label: "Genre / Style", name: "genre", widget: "string" }
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Audio File", name: "audioSrc", widget: "file", media_library: { config: { multiple: false } }, required: false }
+              - { label: "Visual (image / gif / video)", name: "visualSrc", widget: "file", required: false }
+              - label: "Visual Type"
+                name: "visualType"
+                widget: "select"
+                options: ["visualizer", "image", "gif", "video"]
+              - { label: "Accent Color", name: "accentColor", widget: "color", default: "#c8b86e" }
+              - { label: "Background Gradient (CSS)", name: "bgGradient", widget: "string" }
+              - label: "Collaborators"
+                name: "collaborators"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Role", name: "role", widget: "string" }
