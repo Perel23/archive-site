@@ -163,7 +163,7 @@
     <a href="#works">Works</a>
     <a href="#collab">Collaborators</a>
     <a href="admin/" target="_blank">Manage</a>
-    <a href="#">Contact</a>
+    <a href="mailto:orimash20@gmail.com">Contact</a>
   </nav>
 </header>
 
@@ -190,10 +190,9 @@
     <div class="footer-meta">All works © the respective artists.<br>Curated &amp; composed by the artist.<br>Built for music &amp; visual collaboration.</div>
   </div>
   <div class="social-links">
-    <a href="#">Bandcamp</a>
-    <a href="#">SoundCloud</a>
-    <a href="#">Instagram</a>
-    <a href="#">Contact</a>
+    <a href="https://soundcloud.com/ori-perelman" target="_blank" rel="noopener">SoundCloud</a>
+    <a href="https://www.instagram.com/_oriperelman_/" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:orimash20@gmail.com">Contact</a>
   </div>
 </footer>
 
@@ -255,7 +254,10 @@ function buildCard(t, i) {
 
   // Visual element
   let visualHTML = '';
-  if (t.visualSrc && t.visualType === 'image') {
+  if (t.fileSetup === 'single_mp4') {
+    const src = t.visualSrc || t.audioSrc;
+    visualHTML = `<video id="vid-${i}" src="${src}" playsinline></video>`;
+  } else if (t.visualSrc && t.visualType === 'image') {
     visualHTML = `<img src="${t.visualSrc}" alt="${t.title}" loading="lazy">`;
   } else if (t.visualSrc && t.visualType === 'gif') {
     visualHTML = `<img src="${t.visualSrc}" alt="${t.title}">`;
@@ -332,10 +334,12 @@ function buildCard(t, i) {
     viz.appendChild(bar);
   }
 
-  // Wire up media element — audio file takes priority; fall back to video visual
-  const mediaEl = t.audioSrc
-    ? new Audio(t.audioSrc)
-    : (t.visualSrc && t.visualType === 'video' ? document.getElementById('vid-' + i) : null);
+  // Wire up media element — single_mp4 uses the video element; otherwise audio file or video visual
+  const mediaEl = t.fileSetup === 'single_mp4'
+    ? document.getElementById('vid-' + i)
+    : t.audioSrc
+      ? new Audio(t.audioSrc)
+      : (t.visualSrc && t.visualType === 'video' ? document.getElementById('vid-' + i) : null);
 
   if (mediaEl) {
     audioEls[i] = mediaEl;
@@ -362,7 +366,7 @@ function buildCard(t, i) {
   // Seek
   card.querySelector('.track-progress').addEventListener('click', e => {
     const audio = audioEls[i];
-    if (!audio || !audio.duration) return;
+    if (!audio || !(audio.duration > 0)) return;
     const rect = e.currentTarget.getBoundingClientRect();
     audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
   });
