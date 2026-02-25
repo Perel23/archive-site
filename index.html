@@ -266,11 +266,12 @@ function buildCard(t, i) {
   }
 
   // Collaborators — find the visual artist for the credit
-  const visualArtist = t.collaborators.find(c =>
+  const collabs = t.collaborators || [];
+  const visualArtist = collabs.find(c =>
     /visual|art|photo|video|film|illustr|direct/i.test(c.role)
-  ) || t.collaborators[0];
+  ) || collabs[0];
 
-  const collabTags = t.collaborators.map(c =>
+  const collabTags = collabs.map(c =>
     `<span class="collab-tag">${c.name}<span class="collab-role">${c.role}</span></span>`
   ).join('');
 
