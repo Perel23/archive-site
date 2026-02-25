@@ -32,6 +32,7 @@
   nav { display: flex; gap: 32px; align-items: center; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
   nav a { color: inherit; text-decoration: none; transition: color .2s; }
   nav a:hover { color: var(--accent); }
+  #manage-link { display: none; }
 
   .hero { height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 70% 40%,rgba(200,184,110,.06) 0%,transparent 70%), radial-gradient(ellipse 40% 60% at 20% 60%,rgba(122,158,138,.04) 0%,transparent 70%); }
@@ -162,7 +163,7 @@
   <nav>
     <a href="#works">Works</a>
     <a href="#collab">Collaborators</a>
-    <a href="admin/" target="_blank">Manage</a>
+    <a href="admin/" target="_blank" id="manage-link">Manage</a>
     <a href="mailto:orimash20@gmail.com">Contact</a>
   </nav>
 </header>
@@ -209,9 +210,13 @@
 <script>
 // ── Netlify Identity redirect ──────────────────────────
 if (window.netlifyIdentity) {
+  const manageLink = document.getElementById('manage-link');
   window.netlifyIdentity.on('init', user => {
-    if (!user) window.netlifyIdentity.on('login', () => document.location.href = '/admin/');
+    if (user) manageLink.style.display = '';
+    else window.netlifyIdentity.on('login', () => document.location.href = '/admin/');
   });
+  window.netlifyIdentity.on('login', () => { manageLink.style.display = ''; });
+  window.netlifyIdentity.on('logout', () => { manageLink.style.display = 'none'; });
 }
 
 // ── Cursor ─────────────────────────────────────────────
@@ -254,17 +259,20 @@ function buildCard(t, i) {
 
   // Visual element
   let visualHTML = '';
+  const isVideoFile = url => /\.(mp4|webm|mov)(\?|#|$)/i.test(url || '');
   if (t.fileSetup === 'single_mp4') {
     const src = t.visualSrc || t.audioSrc;
     visualHTML = `<video id="vid-${i}" src="${src}" playsinline></video>`;
-  } else if (t.visualSrc && t.visualType === 'image') {
-    visualHTML = `<img src="${t.visualSrc}" alt="${t.title}" loading="lazy">`;
-  } else if (t.visualSrc && t.visualType === 'gif') {
-    visualHTML = `<img src="${t.visualSrc}" alt="${t.title}">`;
-  } else if (t.visualSrc && t.visualType === 'video') {
-    visualHTML = t.audioSrc
-      ? `<video src="${t.visualSrc}" autoplay muted loop playsinline></video>`
-      : `<video id="vid-${i}" src="${t.visualSrc}" playsinline></video>`;
+  } else if (t.visualSrc) {
+    if (t.visualType === 'video' || isVideoFile(t.visualSrc)) {
+      visualHTML = t.audioSrc
+        ? `<video src="${t.visualSrc}" autoplay muted loop playsinline></video>`
+        : `<video id="vid-${i}" src="${t.visualSrc}" playsinline></video>`;
+    } else if (t.visualType === 'image') {
+      visualHTML = `<img src="${t.visualSrc}" alt="${t.title}" loading="lazy">`;
+    } else {
+      visualHTML = `<img src="${t.visualSrc}" alt="${t.title}">`;
+    }
   }
 
   // Collaborators — find the visual artist for the credit
