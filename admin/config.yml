@@ -27,6 +27,14 @@ collections:
               - { label: "Genre / Style", name: "genre", widget: "string" }
               - { label: "Year", name: "year", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+              - label: "File Setup"
+                name: "fileSetup"
+                widget: "select"
+                required: true
+                hint: "Same MP4 — upload the file as Visual only and leave Audio File empty. Separate files — upload each file to its own field."
+                options:
+                  - { label: "Same MP4 (video contains both audio and visuals)", value: "single_mp4" }
+                  - { label: "Separate files (audio and visual are different files)", value: "separate_files" }
               - { label: "Audio File", name: "audioSrc", widget: "file", media_library: { config: { multiple: false } }, required: false }
               - { label: "Visual (image / gif / video)", name: "visualSrc", widget: "file", required: false }
               - label: "Visual Type"
