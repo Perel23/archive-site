@@ -260,7 +260,9 @@ function buildCard(t, i) {
   } else if (t.visualSrc && t.visualType === 'gif') {
     visualHTML = `<img src="${t.visualSrc}" alt="${t.title}">`;
   } else if (t.visualSrc && t.visualType === 'video') {
-    visualHTML = `<video src="${t.visualSrc}" autoplay muted loop playsinline></video>`;
+    visualHTML = t.audioSrc
+      ? `<video src="${t.visualSrc}" autoplay muted loop playsinline></video>`
+      : `<video id="vid-${i}" src="${t.visualSrc}" playsinline></video>`;
   }
 
   // Collaborators — find the visual artist for the credit
@@ -329,21 +331,24 @@ function buildCard(t, i) {
     viz.appendChild(bar);
   }
 
-  // Wire up real audio if src exists
-  if (t.audioSrc) {
-    const audio = new Audio(t.audioSrc);
-    audioEls[i] = audio;
+  // Wire up media element — audio file takes priority; fall back to video visual
+  const mediaEl = t.audioSrc
+    ? new Audio(t.audioSrc)
+    : (t.visualSrc && t.visualType === 'video' ? document.getElementById('vid-' + i) : null);
 
-    audio.addEventListener('loadedmetadata', () => {
-      document.getElementById('dur-'+i).textContent = fmtTime(audio.duration);
+  if (mediaEl) {
+    audioEls[i] = mediaEl;
+
+    mediaEl.addEventListener('loadedmetadata', () => {
+      document.getElementById('dur-'+i).textContent = fmtTime(mediaEl.duration);
     });
-    audio.addEventListener('timeupdate', () => {
-      const pct = audio.duration ? (audio.currentTime / audio.duration)*100 : 0;
+    mediaEl.addEventListener('timeupdate', () => {
+      const pct = mediaEl.duration ? (mediaEl.currentTime / mediaEl.duration)*100 : 0;
       document.getElementById('fill-'+i).style.width = pct+'%';
-      document.getElementById('time-'+i).textContent = fmtTime(audio.currentTime);
+      document.getElementById('time-'+i).textContent = fmtTime(mediaEl.currentTime);
       if (i === currentIdx) document.getElementById('npbFill').style.width = pct+'%';
     });
-    audio.addEventListener('ended', () => {
+    mediaEl.addEventListener('ended', () => {
       card.classList.remove('active');
       document.getElementById('npbStatus').textContent = 'Ended';
       document.getElementById('npbDot').style.display = 'none';
