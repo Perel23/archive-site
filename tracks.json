@@ -1,73 +1,16 @@
 {
   "tracks": [
     {
+      "fileSetup": "single_mp4",
+      "genre": "Trap / R&B",
+      "titleItalic": "Beach",
+      "bgGradient": "linear-gradient(135deg, #f0a500, #c4622d, #2c1a4a)",
+      "title": "Moon Beach",
+      "accentColor": "#c8b86e",
+      "visualType": "gif",
       "id": 1,
-      "title": "The Tide Remembers",
-      "titleItalic": "Tide",
-      "genre": "Ambient / Electronic",
-      "year": "2024",
-      "description": "A meditation on memory and water. Recorded during three consecutive nights at the harbor, the layers of synthetic strings were sculpted around field recordings of waves meeting concrete.",
-      "audioSrc": "media/tide-remembers.mp3",
-      "visualSrc": "",
-      "visualType": "visualizer",
-      "accentColor": "#7a9e8a",
-      "bgGradient": "linear-gradient(135deg, #1a1a15 0%, #0f1a14 100%)",
-      "collaborators": [
-        { "name": "Mara Osei-Bonsu", "role": "Visual Art" },
-        { "name": "Nico Ferretti", "role": "Mix" }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Copper Frequency",
-      "titleItalic": "Copper",
-      "genre": "Jazz / Experimental",
-      "year": "2024",
-      "description": "Built from a single 9-minute improvisation. Yuki's ink paintings were completed while listening on loop — both works finished the same morning, neither seen by the other until the opening.",
-      "audioSrc": "media/copper-frequency.mp3",
-      "visualSrc": "",
-      "visualType": "visualizer",
-      "accentColor": "#c8b86e",
-      "bgGradient": "linear-gradient(135deg, #1a1208 0%, #1a0f0f 100%)",
-      "collaborators": [
-        { "name": "Yuki Tanaka", "role": "Ink & Print" },
-        { "name": "D. Sharma", "role": "Piano" }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Glass Archive",
-      "titleItalic": "Archive",
-      "genre": "Electronic / Drone",
-      "year": "2023",
-      "description": "A drone composition created for Lena's installation at the Speicher gallery. The piece evolves over 22 minutes with glacial shifts designed to reward those who stay still long enough to hear them.",
-      "audioSrc": "media/glass-archive.mp3",
-      "visualSrc": "",
-      "visualType": "visualizer",
-      "accentColor": "#9a8ec8",
-      "bgGradient": "linear-gradient(135deg, #0f0f1a 0%, #140f1a 100%)",
-      "collaborators": [
-        { "name": "Lena Müller", "role": "Installation" },
-        { "name": "J. Adeyemi", "role": "Sound Design" }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Returning Home",
-      "titleItalic": "Returning",
-      "genre": "Soul / Neo-R&B",
-      "year": "2025",
-      "description": "Olusegun's collage work arrived first — three months of materials from Lagos, Accra, and London. The music came after, trying to hold all three cities at once without choosing between them.",
-      "audioSrc": "media/returning-home.mp3",
-      "visualSrc": "",
-      "visualType": "visualizer",
-      "accentColor": "#c8b86e",
-      "bgGradient": "linear-gradient(135deg, #0f1a0f 0%, #1a1a08 100%)",
-      "collaborators": [
-        { "name": "Olusegun Bello", "role": "Collage" },
-        { "name": "E. Okafor", "role": "Vocals" },
-        { "name": "K. Mensah", "role": "Percussion" }
-      ]
+      "description": "Built around a sun-soaked melody that feels like a warm beach sunset, this track layers dreamy bass and rich R&B guitar chords into something effortlessly hypnotic. Halfway through, the energy shifts — a jazzy, melancholic sample cuts through the brightness, adding a layer of depth and shadow before the groove pulls you back in.",
+      "year": "2026"
     }
   ]
 }
