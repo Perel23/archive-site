@@ -230,7 +230,7 @@ let currentIdx = -1;
 fetch('tracks.json')
   .then(r => r.json())
   .then(data => {
-    tracks = data;
+    tracks = data.tracks;
     document.getElementById('trackCount').textContent = String(tracks.length).padStart(2,'0');
     document.getElementById('collectionCount').textContent = tracks.length + ' Works';
     tracks.forEach((t, i) => buildCard(t, i));
