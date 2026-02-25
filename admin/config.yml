@@ -9,9 +9,6 @@ collections:
   - name: "tracks"
     label: "Tracks"
     label_singular: "Track"
-    folder: "."
-    format: "json"
-    create: false
     files:
       - name: "tracks"
         label: "All Tracks"
