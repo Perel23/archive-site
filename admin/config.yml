@@ -5,6 +5,12 @@ backend:
 media_folder: "media"
 public_folder: "/media"
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dmriyb1dl
+    api_key: 775477161957634
+
 collections:
   - name: "tracks"
     label: "Tracks"
