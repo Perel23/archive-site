@@ -32,6 +32,12 @@
       "genre": "Rock",
       "visualSrc": "https://res.cloudinary.com/dmriyb1dl/image/upload/v1772101813/IMG_3357_l7xalf.jpg",
       "titleItalic": "Jimi",
+      "collaborators": [
+        {
+          "name": "Ratemoh Pinterest ",
+          "role": "Artist"
+        }
+      ],
       "audioSrc": "https://res.cloudinary.com/dmriyb1dl/video/upload/v1772101769/guitar_riff_a3onbx.wav",
       "bgGradient": "linear-gradient(135deg, #1a0000, #6b0000, #0d0000)",
       "title": "Jimi",
