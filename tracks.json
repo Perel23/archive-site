@@ -26,6 +26,20 @@
       "id": 2,
       "description": "\nWhat happens when Red Hot Chili Peppers crash a Michael Jackson session — funky, razor-tight guitars locked into a disco groove that pulls you straight to your feet. The track carries an intense energy, but a hypnotic looping melody and syncopated rhythm ease you into the pocket, making it impossible not to move.",
       "year": "2025"
+    },
+    {
+      "fileSetup": "separate_files",
+      "genre": "Rock",
+      "visualSrc": "https://res.cloudinary.com/dmriyb1dl/image/upload/v1772101813/IMG_3357_l7xalf.jpg",
+      "titleItalic": "Jimi",
+      "audioSrc": "https://res.cloudinary.com/dmriyb1dl/video/upload/v1772101769/guitar_riff_a3onbx.wav",
+      "bgGradient": "linear-gradient(135deg, #1a0000, #6b0000, #0d0000)",
+      "title": "Jimi",
+      "accentColor": "#c8b86e",
+      "visualType": "image",
+      "id": 3,
+      "description": "This one is personal. Built on raw, driving rock chords that anchor everything above them, the track carries an angry, minor-key tension — the feeling of being pushed to your limit but refusing to back down. Layered on top, the melodies narrate the struggle, letting the emotions rise and fall naturally. The highlight is a shining, hypnotic guitar line that cuts through it all — catchy enough to pull you in and make the world disappear for a moment. The artwork was chosen deliberately, and if you look at it while you listen, you'll understand why.",
+      "year": "2024"
     }
   ]
 }
